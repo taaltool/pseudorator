@@ -1,6 +1,6 @@
 # Pseudoword Generator for Czech
 
-The Pseudoword Generator for Czech language is a React-based web application designed to generate pseudowords based on phonotactic or orthotactic probability calculations. This tool is particularly useful for linguistic research, providing users with a way to to take into account the phonotactic possibilities of Czech.
+The Pseudoword Generator for the Czech language is a React-based web application designed to generate pseudowords based on phonotactic or orthotactic probability calculations. This tool is particularly useful for linguistic research, providing users with a way to take into account the phonotactic possibilities of Czech.
 
 ## Usage
 After launching the application, you will be greeted with an interactive form where you can:
@@ -19,7 +19,7 @@ Fill in the desired parameters and click the 'Generate' button to produce pseudo
 - **Probability Calculation**: Includes a module to calculate the phonotactic probability of generated words, based on user-selected data type (phonotactic or orthotactic).
 
 ## Components
-- **Generator**: Handles the core logic of pseudoword generation, manages state.
+- **Generator**: Handles the core logic of pseudoword generation, and manages state.
 - **DataLoader**: Handles the loading of bigram data based on selected criteria.
 - **InputForm**: Provides input fields for defining word generation parameters.
 - **OutputDisplay**: Displays generated pseudowords and their probabilities.
@@ -30,7 +30,7 @@ Fill in the desired parameters and click the 'Generate' button to produce pseudo
 
 The method for calculating phonotactic probability is based on the approach used by *Čechová et al. (2023)* for the Czech language. The calculations involve assessing the frequency and positional data of bigrams within a given word.
 
-## Citing This Project
+## Citation
 
 If you use this application in your research or for other purposes, please cite both the application and the primary article:
 
