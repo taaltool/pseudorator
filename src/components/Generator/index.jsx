@@ -23,19 +23,20 @@ const Generator = () => {
       }
     });
 
-    for (let i = startIndex - 1; i >= 0; i -= 2) {
-      const randomBigram = BigramWeigher(bigrams, i + 1);
-      if (randomBigram) {
-        word[i] = randomBigram[0];
-        if (i - 1 >= 0) word[i - 1] = randomBigram[1];
+    for (let i = endIndex; i < wordLength - 1; i++) {
+      if (i === -1) {
+        // TODO: Generate random bigram and put it there
+        const prefix = 'm'
+        word[0] = prefix 
+        console.log(`generated prefix: '${prefix}'`)
+        continue
       }
-    }
-
-    for (let i = endIndex + 1; i < wordLength; i += 2) {
-      const randomBigram = BigramWeigher(bigrams, i + 1);
+      const lastLetter = word[i]
+      const randomBigram = BigramWeigher(bigrams, lastLetter,  i + 1);
       if (randomBigram) {
-        word[i] = randomBigram[0];
-        if (i + 1 < wordLength) word[i + 1] = randomBigram[1];
+        word[i + 1] = randomBigram[1];
+      } else {
+        console.error(`Did not find bigram. pos:${i}, word:${word.join("")}`)
       }
     }
 
