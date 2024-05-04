@@ -6,8 +6,8 @@ const ProbabilityCalculator = ({ bigramsData, word }) => {
     ).sum_log_freq_pos;
 
     for (let i = 0; i < word.length - 1; i++) {
-      const bigram = word.substring(i, i + 2);
-      const positionData = bigramsData.find((b) => b.bigram === bigram);
+      const bigram = word.slice(i, i + 2);
+      const positionData = bigramsData.find((b) => b.bigram[0] === bigram[0] && b.bigram[1] === bigram[1]);
 
       if (positionData && totalData) {
         const positionIndex = i + 1;
