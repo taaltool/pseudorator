@@ -47,6 +47,7 @@ const Generator = () => {
           // no restriction
           const bigram = getRandomBigram(bigrams, i + 1)
           word[i] = bigram[0]
+          word[i + 1] = bigram[1]
         }
       }
     }
