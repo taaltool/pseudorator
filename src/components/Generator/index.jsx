@@ -51,7 +51,7 @@ const Generator = () => {
       }
     }
 
-    return word.join("");
+    return word;
   };
 
   const handleGenerate = (
@@ -73,18 +73,19 @@ const Generator = () => {
     const generatedWordsSet = new Set();
 
     for (let i = 0; i < numWords; i++) {
-      let generatedWord, probability;
+      let generatedWord, generatedWordAsList, probability;
       let attempts = 0;
       do {
-        generatedWord = generatePseudoword(
+        generatedWordAsList = generatePseudoword(
           bigrams,
           parseInt(wordLength),
           characterInputs
         );
         probability = ProbabilityCalculator({
           bigramsData: bigrams,
-          word: generatedWord,
+          word: generatedWordAsList,
         });
+        generatedWord = generatedWordAsList.join("")
         attempts++;
       } while (
         (Math.abs(probability - targetProbability) > tolerance ||
