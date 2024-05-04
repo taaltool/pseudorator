@@ -10,8 +10,8 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
       try {
         const file =
           choice === "orthotactic"
-            ? "/bigram-database.json"
-            : "/phonetic_bigram_database.json";
+            ? "bigram-database.json"
+            : "phonetic_bigram_database.json";
         const response = await fetch(file);
         const data = await response.json();
         console.log("Načtená data:", data);
