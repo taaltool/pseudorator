@@ -1,12 +1,12 @@
-const BigramWeigher = (bigrams, lastLetter, position) => {
+const getBigram = (bigrams, character, position, characterPosition) => {
   const validBigrams = bigrams.filter(
     (bigram) =>
       bigram &&
-      bigram.bigram[0] === lastLetter && 
+      bigram.bigram[characterPosition] === character && 
       bigram.sum_log_freq_pos &&
       bigram.sum_log_freq_pos[position.toString()]
   );
-  if (validBigrams.length === 0) {
+  if (validBigrams.length === 0) { 
     return null;
   }
 
@@ -25,8 +25,21 @@ const BigramWeigher = (bigrams, lastLetter, position) => {
     }
   }
   
-  console.error(`no bigram selected ${lastLetter}, ${position}, ${sum}, ${random}`)
+  console.error(`no bigram selected ${character}, ${position}, ${sum}, ${random}`)
   return null;
 };
 
-export default BigramWeigher;
+const getRandomBigram = (bigrams, position) => {
+  const validBigrams = bigrams.filter(
+    (bigram) =>
+      bigram &&
+      bigram.sum_log_freq_pos &&
+      bigram.sum_log_freq_pos[position.toString()]
+  );
+  const randomIndex = Math.floor(Math.random() * validBigrams.length)
+  return validBigrams[randomIndex].bigram
+}
+
+export {getBigram, getRandomBigram}
+
+export default getBigram;

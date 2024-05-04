@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import OutputDisplay from "../OutputDisplay";
 import InputForm from "../InputForm";
-import BigramWeigher from "../BigramWeigher";
+import {getBigram, getRandomBigram} from "../BigramWeigher";
 import DataLoader from "../DataLoader";
 import ProbabilityCalculator from "../ProbabilityCalculator";
 
@@ -12,31 +12,42 @@ const Generator = () => {
 
   const generatePseudoword = (bigrams, wordLength, characterInputs) => {
     let word = Array.from({ length: wordLength }, () => "");
-    let startIndex = -1;
-    let endIndex = -1;
 
     characterInputs.forEach((char, index) => {
       if (char) {
         word[index] = char;
-        if (startIndex === -1) startIndex = index;
-        endIndex = index;
       }
     });
 
-    for (let i = endIndex; i < wordLength - 1; i++) {
-      if (i === -1) {
-        // TODO: Generate random bigram and put it there
-        const prefix = 'm'
-        word[0] = prefix 
-        console.log(`generated prefix: '${prefix}'`)
-        continue
-      }
-      const lastLetter = word[i]
-      const randomBigram = BigramWeigher(bigrams, lastLetter,  i + 1);
-      if (randomBigram) {
-        word[i + 1] = randomBigram[1];
+    for (let i = 0; i < wordLength - 1; i++) {
+      const currentCharacter = word[i]
+      const nextCharacter = word[i + 1]
+      if (currentCharacter) {
+        if (nextCharacter) {
+          continue;
+        }
+        // next position is empty -> find suitable candidate
+        const randomBigram = getBigram(bigrams, currentCharacter,  i + 1, 0);
+        if (randomBigram) {
+          word[i + 1] = randomBigram[1];
+        } else {
+          console.error(`Did not find bigram 0. pos:${i}, word:${word.join("")}`)
+        }
       } else {
-        console.error(`Did not find bigram. pos:${i}, word:${word.join("")}`)
+        // current position is empty
+        if (nextCharacter) {
+          // and there is letter next to us
+          const randomBigram = getBigram(bigrams, nextCharacter,  i + 1, 1);
+          if (randomBigram) {
+            word[i] = randomBigram[0];
+          } else {
+            console.error(`Did not find bigram 1. pos:${i}, word:${word.join("")}`)
+          }
+        } else {
+          // no restriction
+          const bigram = getRandomBigram(bigrams, i + 1)
+          word[i] = bigram[0]
+        }
       }
     }
 
