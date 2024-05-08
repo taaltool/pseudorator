@@ -75,7 +75,7 @@ html {
 
 .calculateButton:hover {
   background-color: #43a047;
-  
+
 }
 
 .charField {
@@ -87,11 +87,19 @@ html {
   outline: none;
 }
 
+.characterInputs {
+  display: flex;
+  flex-direction: row;
+
+}
+
 .charForm {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 5px;
+  width: auto;
+  max-width: 20em;
 }
 
 .inputField,
@@ -109,9 +117,7 @@ button {
 @media (max-width: 500px) {
   .button {
     margin-bottom: 5px;
-
   }
-
 
   button {
     width: calc(100% - 10px);
@@ -122,5 +128,9 @@ button {
     width: calc(100% - 10px);
   }
 
+  .characterInputs {
+    flex-direction: column;
+
+  }
 
 }

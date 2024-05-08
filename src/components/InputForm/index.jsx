@@ -84,8 +84,10 @@ const InputForm = ({ onGenerate }) => {
         </label>
       </div>
       <div className="characterInputs">
+      
         <label>
-          Required characters:
+          Required characters: </label>
+          <div className="charForm">
           {characterInputs.map((char, index) => (
             <input
               key={index}
@@ -99,7 +101,8 @@ const InputForm = ({ onGenerate }) => {
               placeholder={`${index + 1}`}
             />
           ))}
-        </label>
+       
+      </div>
       </div>
       <button className="calculateButton" type="submit">
         Generate
