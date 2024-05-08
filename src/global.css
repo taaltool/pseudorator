@@ -71,8 +71,11 @@ html {
 }
 
 .button:hover,
+
+
 .calculateButton:hover {
   background-color: #43a047;
+  
 }
 
 .charField {
@@ -105,7 +108,19 @@ button {
 
 @media (max-width: 500px) {
   .button {
-    display: block;
-    margin-top: 5px;
+    margin-bottom: 5px;
+
   }
+
+
+  button {
+    width: calc(100% - 10px);
+    margin: 0 5px;
+  }
+
+  .inputField {
+    width: calc(100% - 10px);
+  }
+
+
 }

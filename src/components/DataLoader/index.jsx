@@ -34,13 +34,13 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
         {" "}
         Probability type:
         <button
-          className="button"
+          className={`button  ${dataChoice === 'orthotactic' ? 'buttonActive' : ''}`}
           onClick={() => handleDataChoice("orthotactic")}
         >
           orthotactic
         </button>
         <button
-          className="button"
+          className={`button  ${dataChoice === 'phonotactic' ? 'buttonActive' : ''}`}
           onClick={() => handleDataChoice("phonotactic")}
         >
           phonotactic
