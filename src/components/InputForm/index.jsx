@@ -8,23 +8,33 @@ const InputForm = ({ onGenerate }) => {
   const inputRefs = useRef([]);
 
   useEffect(() => {
-    setCharacterInputs(Array(parseInt(wordLength)).fill(""));
-    inputRefs.current = inputRefs.current.slice(0, parseInt(wordLength));
+    const length = Math.max(2, parseInt(wordLength) || 2);
+    setCharacterInputs(Array(length).fill(""));
+    inputRefs.current = inputRefs.current.slice(0, length);
   }, [wordLength]);
 
   const handleWordLengthChange = (event) => {
-    const newLength = parseInt(event.target.value, 10);
-    if (!isNaN(newLength) && newLength > 1) {
-      setWordLength(newLength);
+    const newLength = event.target.value;
+    setWordLength(newLength);
+  };
+
+  const handleWordLengthBlur = () => {
+    const parsedLength = parseInt(wordLength, 10);
+
+    if (!isNaN(parsedLength) && parsedLength >= 2) {
+      setWordLength(parsedLength);
     } else {
       setWordLength(2);
     }
   };
-
   const handleNumWordsChange = (event) => {
-    const newNumWords = parseInt(event.target.value, 10);
-    if (!isNaN(newNumWords) && newNumWords > 0) {
-      setNumWords(newNumWords);
+    setNumWords(event.target.value);
+  };
+
+  const handleNumWordsBlur = () => {
+    const parsedNumWords = parseInt(numWords, 10);
+    if (!isNaN(parsedNumWords) && parsedNumWords > 0) {
+      setNumWords(parsedNumWords);
     } else {
       setNumWords(1);
     }
@@ -55,6 +65,8 @@ const InputForm = ({ onGenerate }) => {
             className="inputField"
             value={wordLength}
             onChange={handleWordLengthChange}
+            onBlur={handleWordLengthBlur}
+            min="2"
           />
         </label>
       </div>
@@ -66,6 +78,8 @@ const InputForm = ({ onGenerate }) => {
             className="inputField"
             value={numWords}
             onChange={handleNumWordsChange}
+            onBlur={handleNumWordsBlur}
+            min="1"
           />
         </label>
       </div>
@@ -84,10 +98,8 @@ const InputForm = ({ onGenerate }) => {
         </label>
       </div>
       <div className="characterInputs">
-      
-        <label>
-          Required characters: </label>
-          <div className="charForm">
+        <label>Required characters: </label>
+        <div className="charForm">
           {characterInputs.map((char, index) => (
             <input
               key={index}
@@ -101,8 +113,7 @@ const InputForm = ({ onGenerate }) => {
               placeholder={`${index + 1}`}
             />
           ))}
-       
-      </div>
+        </div>
       </div>
       <button className="calculateButton" type="submit">
         Generate

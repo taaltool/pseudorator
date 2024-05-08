@@ -60,10 +60,6 @@ html {
   transition: background-color 0.2s ease;
 }
 
-.calculateButton:hover {
-  background-color: #c33c25;
-}
-
 .button,
 .calculateButton {
   background-color: #4caf50;
@@ -71,10 +67,9 @@ html {
 }
 
 .button:hover,
-
-
 .calculateButton:hover {
   background-color: #43a047;
+  
 
 }
 
