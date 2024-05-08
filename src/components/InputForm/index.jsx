@@ -12,6 +12,24 @@ const InputForm = ({ onGenerate }) => {
     inputRefs.current = inputRefs.current.slice(0, parseInt(wordLength));
   }, [wordLength]);
 
+  const handleWordLengthChange = (event) => {
+    const newLength = parseInt(event.target.value, 10);
+    if (!isNaN(newLength) && newLength > 1) {
+      setWordLength(newLength);
+    } else {
+      setWordLength(2);
+    }
+  };
+
+  const handleNumWordsChange = (event) => {
+    const newNumWords = parseInt(event.target.value, 10);
+    if (!isNaN(newNumWords) && newNumWords > 0) {
+      setNumWords(newNumWords);
+    } else {
+      setNumWords(1);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     onGenerate(wordLength, numWords, targetProbability, characterInputs);
@@ -36,7 +54,7 @@ const InputForm = ({ onGenerate }) => {
             type="number"
             className="inputField"
             value={wordLength}
-            onChange={(e) => setWordLength(e.target.value)}
+            onChange={handleWordLengthChange}
           />
         </label>
       </div>
@@ -47,7 +65,7 @@ const InputForm = ({ onGenerate }) => {
             type="number"
             className="inputField"
             value={numWords}
-            onChange={(e) => setNumWords(e.target.value)}
+            onChange={handleNumWordsChange}
           />
         </label>
       </div>
