@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const InputForm = ({ onGenerate }) => {
+const InputForm = ({ onGenerate, dataChoice }) => {
   const [wordLength, setWordLength] = useState(5);
   const [numWords, setNumWords] = useState(10);
   const [targetProbability, setTargetProbability] = useState(0.003);
   const [characterInputs, setCharacterInputs] = useState(Array(5).fill(""));
   const inputRefs = useRef([]);
+  const isPhonotactic = dataChoice === "phonotactic";
 
   useEffect(() => {
     const length = Math.max(2, parseInt(wordLength) || 2);
@@ -51,12 +52,18 @@ const InputForm = ({ onGenerate }) => {
     setCharacterInputs(updatedInputs);
 
     if (value && index + 1 < characterInputs.length) {
-      inputRefs.current[index + 1].focus();
+      if (isPhonotactic) {
+        if (value.length === 3) {
+          inputRefs.current[index + 1].focus();
+        }
+      } else {
+        inputRefs.current[index + 1].focus();
+      }
     }
   };
 
   return (
-    <form className="inputForm" onSubmit={handleSubmit}>
+    <form className="inputForm" key={dataChoice} onSubmit={handleSubmit}>
       <div>
         <label>
           Word Length:
@@ -106,7 +113,7 @@ const InputForm = ({ onGenerate }) => {
               type="text"
               autoCapitalize="none"
               className="charField"
-              maxLength="1"
+              maxLength={isPhonotactic ? 3 : 1}
               value={char}
               onChange={(e) => handleCharacterChange(index, e.target.value)}
               ref={(el) => (inputRefs.current[index] = el)}

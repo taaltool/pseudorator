@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
   const handleDataChoice = (choice) => {
+    console.log("Changing data choice to:", choice);
     setDataChoice(choice);
   };
 
@@ -14,7 +15,7 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
             : "https://taaltool.github.io/pseudorator/phonetic_bigram_database.json";
         const response = await fetch(file);
         const data = await response.json();
-        console.log("Načtená data:", data);
+        console.log("Loaded data:", data);
         if (data.length > 0 && data[0].bigram) {
           setBigrams(data);
         } else {
@@ -34,13 +35,17 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
         {" "}
         Probability type:
         <button
-          className={`button  ${dataChoice === 'orthotactic' ? 'buttonActive' : ''}`}
+          className={`button  ${
+            dataChoice === "orthotactic" ? "buttonActive" : ""
+          }`}
           onClick={() => handleDataChoice("orthotactic")}
         >
           orthotactic
         </button>
         <button
-          className={`button  ${dataChoice === 'phonotactic' ? 'buttonActive' : ''}`}
+          className={`button  ${
+            dataChoice === "phonotactic" ? "buttonActive" : ""
+          }`}
           onClick={() => handleDataChoice("phonotactic")}
         >
           phonotactic

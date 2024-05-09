@@ -115,7 +115,7 @@ const Generator = () => {
         setDataChoice={setDataChoice}
         setBigrams={setBigrams}
       />
-      <InputForm onGenerate={handleGenerate} />
+      <InputForm onGenerate={handleGenerate} dataChoice={dataChoice}/>
       <OutputDisplay words={pseudowords} />
     </div>
   );
