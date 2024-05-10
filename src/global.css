@@ -109,6 +109,10 @@ button {
   max-width: 100%;
 }
 
+.ipaForm {
+margin-top: 2em;
+}
+
 @media (max-width: 500px) {
   .button {
     margin-bottom: 5px;
