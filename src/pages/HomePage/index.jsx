@@ -5,7 +5,7 @@ export const HomePage = () => {
   return (
     <div className="app">
       <header>
-        <h1>Pseudoword Generator for Czech from PR</h1>
+        <h1>Pseudoword Generator for Czech</h1>
       </header>
       <main>
         <Generator />
