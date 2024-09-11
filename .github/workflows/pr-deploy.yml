@@ -1,0 +1,50 @@
+name: PR-Deploy
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build-PR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload pr build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-${{ github.event.number }}-files
+          path: ./dist
+
+  deploy:
+    name: Deploy-PR
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download PR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pr-${{ github.event.number }}-files
+          path: ./dist
+
+      - name: Deploy to PR GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          destination_dir: pr-${{ github.event.number }}
