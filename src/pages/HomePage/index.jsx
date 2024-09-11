@@ -11,7 +11,7 @@ export const HomePage = () => {
         <Generator />
       </main>
       <footer>
-        <p>process.env.REACT_APP_MY_VERSION</p>
+        <p>{process.env.REACT_APP_MY_VERSION}</p>
       </footer>
     </div>
   );
