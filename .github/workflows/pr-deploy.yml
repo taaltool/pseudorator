@@ -22,9 +22,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build project
-        run: |
-          export REACT_APP_MY_VERSION=pr-${{ github.event.number }}
-          npm run build
+        run: npm run build
 
       - name: Upload pr build files
         uses: actions/upload-artifact@v4
