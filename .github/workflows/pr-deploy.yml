@@ -24,7 +24,7 @@ jobs:
       - name: Build project
         run: |
           # ugly hack
-          sed -i 's/base: \"\/pseudorator\/\"/base: \"\/pseudorator\/pr-${{ github.event.number }}\/\",/g' ./vite.config.js
+          sed -i 's/base: \"\/pseudorator\/\"/base: \"\/pseudorator\/pr-${{ github.event.number }}\/\"/g' ./vite.config.js
           npm run build
 
       - name: Upload pr build files
