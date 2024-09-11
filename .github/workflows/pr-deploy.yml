@@ -22,7 +22,10 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build project
-        run: npm run build
+        run: |
+          # ugly hack
+          sed -i 's/base: \"\/pseudorator\/\"/base: \"\/pseudorator\/pr-${{ github.event.number }}\/\",/g' ./vite.config.js
+          npm run build
 
       - name: Upload pr build files
         uses: actions/upload-artifact@v4
