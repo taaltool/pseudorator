@@ -11,8 +11,8 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
       try {
         const file =
           choice === "orthotactic"
-            ? "https://taaltool.github.io/pseudorator/bigram-database.json"
-            : "https://taaltool.github.io/pseudorator/phonetic_bigram_database.json";
+            ? "./bigram-database.json"
+            : "./phonetic_bigram_database.json";
         const response = await fetch(file);
         const data = await response.json();
         console.log("Loaded data:", data);
