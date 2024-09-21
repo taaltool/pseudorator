@@ -19,7 +19,7 @@ const ProbabilityCalculator = ({ bigramsData, word }) => {
           const ratio = bigramLogFreq / totalLogFreq;
           sumRatios += ratio;
         }
-        console.log(
+        console.debug(
           `Bigram: ${bigram}, Position: ${positionIndex}, Bigram Log Frequency: ${bigramLogFreq}, Total Log Frequency: ${totalLogFreq}`
         );
       }
