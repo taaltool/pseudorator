@@ -5,6 +5,7 @@ import {getBigram, getRandomBigram} from "../BigramWeigher";
 import DataLoader from "../DataLoader";
 import ProbabilityCalculator from "../ProbabilityCalculator";
 
+
 const Generator = () => {
   const [bigrams, setBigrams] = useState([]);
   const [pseudowords, setPseudowords] = useState([]);

@@ -67,7 +67,8 @@ html {
 }
 
 .button:hover,
-.calculateButton:hover {
+.calculateButton:hover,
+.legendButton:hover {
   background-color: #43a047;
   
 
@@ -113,6 +114,46 @@ button {
 margin-top: 2em;
 }
 
+
+.hidden {
+  display: none;
+}
+
+.legendPopup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0; 
+  width: auto; 
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ccc;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  z-index: 1001;
+  transition: left 0.3s ease;
+}
+
+.legendButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  font-size: 18px;
+  z-index: 1002;
+}
+
+.legendActive {
+  max-width: calc(100% - 320px); 
+  margin-right: 320px;
+  transition: margin 0.3s ease;
+}
+
 @media (max-width: 500px) {
   .button {
     margin-bottom: 5px;
@@ -132,4 +173,27 @@ margin-top: 2em;
 
   }
 
+  .legendPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+    z-index: 1001;
+    margin: 0;
+    transform: none;
+  
+  }
+
+  .legendButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1002;
+  }
+
+ 
 }
