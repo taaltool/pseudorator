@@ -151,7 +151,7 @@ const LegendContent = () => (
         <h4>Density plot</h4>
         <p>
           <img
-            src="../pages/HomePage/img/krivka.png"
+            src="pseudorator/src/pages/HomePage/img/krivka.png"
             alt="Janova křivka"
             width="600"
             height="400"
