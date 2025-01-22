@@ -58,25 +58,20 @@ const LegendContent = () => (
     <h3>What is this tool?</h3>
     <p>
       Pseudoword Generator for Czech is a React-based web application designed
-      to generate pseudowords based on phonotactic or orthostatic probability
-      calculations. This tool is particularly useful for linguistic research,
-      providing users with a way to consider the Czech language's phonotactic
-      possibilities.
+      to generate pseudowords based on phonotactic or orthotactic probability
+      values. This tool is particularly useful for linguistic research,
+      providing users with a way to to control linguistic experiments with
+      pseudowords better, hence study language processing better. In addition,
+      it can also count the value of phonotactic or orthotactic probability for
+      a given word or pseudoword.
     </p>
     <h3>How to generate?</h3>
     <p>
-      There are two options available for generating pseudowords and several
-      parameters to specify the request.
+      Choose between orthotactic or phonotactic probability (see bellow; the
+      default option is orthotactic), optionally specify other parameters and
+      press “generate”:
     </p>
     <ul>
-      <li>
-        <h4>Orthotactic or phonotactic probability</h4>
-        <p>
-          First, you can choose between orthotactic and phonotactic probability
-          (see below for what that means). The default option is orthotactic
-          probability.
-        </p>
-      </li>
       <li>
         <h4>Word Length</h4>
         <p>
@@ -97,41 +92,96 @@ const LegendContent = () => (
         <h4>Target Probability</h4>
         <p>
           The major innovation of this tool is that you can set a target
-          probability. The default value is 0,003, the usual probability value
-          of actual Czech words (see graph below).
+          probability. The default value is 0.003, the usual phonotactic
+          probability value of Czech words (see the figure below). Note that the
+          values are rounded to four decimal places.
         </p>
       </li>
       <li>
         <h4>Required characters</h4>
         <p>
-          You can also enter required characters, grapgemes for orthotactic, and
-          phonemes for phonotactic probability. Phonemes must be specified as
-          IPA characters; IPA help is available.
+          You can also enter required characters (useful for pre-established
+          prefixes, roots or suffixes), graphemes for orthotactic, and phonemes
+          for phonotactic probability. Phonemes must be specified as IPA
+          characters, for your convenience, the IPA help is available. (Note
+          that this feature means you can also count the phonotactic or
+          orthotactic probability for an existing word or a pseudoword.)
         </p>
       </li>
     </ul>
     <h3>How is it generated?</h3>
     <p>
       The application searches through lists of bigrams extracted from the
-      synchronous corpus of contemporary Czech SYN2020, including frequency
-      data, and tries to satisfy the user's request. If, even after thousands of
-      attempts, it fails to build a pseudoword of the required probability
-      value, it will ignore this parameter.
+      synchronous corpus of contemporary Czech SYN2020 (reference?), including
+      frequency data, and tries to satisfy the user's request. If, even after
+      thousands of attempts, it fails to build a pseudoword of the required
+      probability value, it will ignore this parameter.
     </p>
     <h3>What does the probability value mean?</h3>
-    <p>
-      <img
-        src="../pages/HomePage/img/krivka.png"
-        alt="Janova křivka"
-        width="600"
-        height="400"
-      />
-    </p>
+    <ul>
+      <li>
+        <h4>Phonotactic probability</h4>
+        <p>
+          Phonotactic probability tells you how frequent phoneme sequences are
+          in contemporary Czech. The calculation works with bigrams, logarithms
+          and frequency data from the Czech corpus SYN2020. It provides you with
+          a number between 0 and 1 for every word or pseudoword, the closer it
+          is to 1, the more probable it is. The number also correlates with how
+          wordlike a pseudoword is rated by native speakers.
+        </p>
+      </li>
+      <li>
+        <h4>Orthotactic probability</h4>
+        <p>
+          Orthotactic probability works just the same as the phonotactic one,
+          except it uses grapheme sequences instead of phonemes to run the
+          calculation.
+        </p>
+      </li>
+      <li>
+        <h4>Density plot</h4>
+        <p>
+          <img
+            src="../pages/HomePage/img/krivka.png"
+            alt="Janova křivka"
+            width="600"
+            height="400"
+          />
+        </p>
+        <p>
+          You can look at the example words’ and pseudowords’ values to get more
+          familiar with the phonotactic probability in Czech:
+          <ul>
+            <li className="example-words">praha 0.0119</li>
+            <li className="example-words">gól 0.0001</li>
+            <li className="example-words">slovo 0.0051</li>
+            <li className="example-words">křivka 0.0015</li>
+            <li className="example-words">smích 0.0018</li>
+            <li className="example-words">ržát 0.0005</li>
+            <li className="example-words">hrát 0.0034</li>
+            <li className="example-words">prasátko 0.0084</li>
+            <li className="example-words">slon 0.0050</li>
+            <li className="example-words">žirafa 0.0038</li>
+            <li className="example-words">přtíč 0.0006</li>
+            <li className="example-words">vyplomit 0.0099</li>
+            <li className="example-words">zamtel 0.0101</li>
+            <li className="example-words">polonice 0.0102</li>
+            <li className="example-words">klkpo 0.0028</li>
+            <li className="example-words">fufdke 0.0009</li>
+            <li className="example-words">brátlo 0.0041</li>
+            <li className="example-words">brořík 0.0069</li>
+            <li className="example-words">přůvka 0.0073</li>
+            <li className="example-words">fnopka 0.0025</li>
+          </ul>
+        </p>
+      </li>
+    </ul>
+
     <h3>How to cite the tool?</h3>
     <p>
       The tool was developed by Martina Vokáčová for the needs of Petra
-      Čechová's research team investigating the role of probability in
-      pseudoword processing.
+      Čechová's research team investigating the role of phonotactic probability
+      in pseudoword processing.
     </p>
     <p>
       If you use this tool in your research or for other purposes, please cite
