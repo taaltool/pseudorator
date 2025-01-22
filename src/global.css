@@ -156,6 +156,7 @@ margin-top: 2em;
   transition: margin 0.3s ease;
 }
 
+
 @media (max-width: 500px) {
   .button {
     margin-bottom: 5px;

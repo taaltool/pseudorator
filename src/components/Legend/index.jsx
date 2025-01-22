@@ -22,7 +22,7 @@ const Legend = () => {
       if (container) {
         const containerRect = container.getBoundingClientRect();
 
-        if (window.innerWidth > 500) {
+        if (window.innerWidth > 1100) {
           setLeftOffset(containerRect.right + 20);
         } else {
           setLeftOffset(0);
