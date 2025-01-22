@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 const Legend = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [leftOffset, setLeftOffset] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const toggleLegend = () => {
     setIsVisible(!isVisible);
@@ -11,7 +14,10 @@ const Legend = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
       const container = document.querySelector(".container");
       if (container) {
         const containerRect = container.getBoundingClientRect();
@@ -44,7 +50,7 @@ const Legend = () => {
       {isVisible && (
         <div
           className="legendPopup"
-          style={{ left: windowWidth > 500 ? `${leftOffset}px` : "0" }}
+          style={{ left: windowSize.width > 500 ? `${leftOffset}px` : "0", maxHeight: `${windowSize.height}px`}}
         >
           <LegendContent />
         </div>
