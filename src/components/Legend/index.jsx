@@ -50,7 +50,10 @@ const Legend = () => {
       {isVisible && (
         <div
           className="legendPopup"
-          style={{ left: windowSize.width > 500 ? `${leftOffset}px` : "0", maxHeight: `${windowSize.height}px`}}
+          style={{
+            left: windowSize.width > 500 ? `${leftOffset}px` : "0",
+            maxHeight: `${windowSize.height}px`,
+          }}
         >
           <LegendContent />
         </div>
@@ -157,27 +160,33 @@ const LegendContent = () => (
         <p>
           You can look at the example words’ and pseudowords’ values to get more
           familiar with the phonotactic probability in Czech:
+        </p>
+        <p>
           <ul>
-            <li className="example-words">praha 0.0119</li>
-            <li className="example-words">gól 0.0001</li>
-            <li className="example-words">slovo 0.0051</li>
-            <li className="example-words">křivka 0.0015</li>
-            <li className="example-words">smích 0.0018</li>
-            <li className="example-words">ržát 0.0005</li>
-            <li className="example-words">hrát 0.0034</li>
-            <li className="example-words">prasátko 0.0084</li>
-            <li className="example-words">slon 0.0050</li>
-            <li className="example-words">žirafa 0.0038</li>
-            <li className="example-words">přtíč 0.0006</li>
-            <li className="example-words">vyplomit 0.0099</li>
-            <li className="example-words">zamtel 0.0101</li>
-            <li className="example-words">polonice 0.0102</li>
-            <li className="example-words">klkpo 0.0028</li>
-            <li className="example-words">fufdke 0.0009</li>
-            <li className="example-words">brátlo 0.0041</li>
-            <li className="example-words">brořík 0.0069</li>
-            <li className="example-words">přůvka 0.0073</li>
-            <li className="example-words">fnopka 0.0025</li>
+            <div className="example-words">
+            <li className="example-word">praha 0.0119</li>
+            <li className="example-word">prasátko 0.0084</li>
+            <li className="example-word">slovo 0.0051</li>
+            <li className="example-word">slon 0.0050</li>
+            <li className="example-word">žirafa 0.0038</li>
+            <li className="example-word">hrát 0.0034</li>
+            <li className="example-word">smích 0.0018</li>
+            <li className="example-word">křivka 0.0015</li>
+            <li className="example-word">ržát 0.0005</li>
+            <li className="example-word">gól 0.0001</li>
+            </div>
+            <div className="example-pseudowords">
+            <li className="example-word">polonice 0.0102</li>
+            <li className="example-word">zamtel 0.0101</li>
+            <li className="example-word">vyplomit 0.0099</li>
+            <li className="example-word">přůvka 0.0073</li>
+            <li className="example-word">brořík 0.0069</li>  
+            <li className="example-word">brátlo 0.0041</li>
+            <li className="example-word">klkpo 0.0028</li>
+            <li className="example-word">fnopka 0.0025</li>
+            <li className="example-word">fufdke 0.0009</li>
+            <li className="example-word">přtíč 0.0006</li>
+            </div>
           </ul>
         </p>
       </li>
