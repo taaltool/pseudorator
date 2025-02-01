@@ -156,6 +156,10 @@ margin-top: 2em;
   transition: margin 0.3s ease;
 }
 
+.link-legend, .custom-link {
+  color: #43a047;
+  text-decoration: none;
+}
 
 @media (max-width: 500px) {
   .button {
