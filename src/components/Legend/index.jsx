@@ -76,9 +76,12 @@ const LegendContent = () => (
     </p>
     <h3>How to generate?</h3>
     <p>
-      Choose between orthotactic or phonotactic probability (see bellow; the
-      default option is orthotactic), optionally specify other parameters and
-      press “generate”:
+      Choose between orthotactic or phonotactic probability (
+      <a href="#PropPhon" className="custom-link">
+        see bellow
+      </a>
+      ; the default option is orthotactic), optionally specify other parameters
+      and press “generate”:
     </p>
     <ul>
       <li>
@@ -121,22 +124,37 @@ const LegendContent = () => (
     <h3>How is it generated?</h3>
     <p>
       The application searches through lists of bigrams extracted from the
-      synchronous corpus of contemporary Czech SYN2020 (reference?), including
-      frequency data, and tries to satisfy the user's request. If, even after
-      thousands of attempts, it fails to build a pseudoword of the required
-      probability value, it will ignore this parameter.
+      synchronous corpus of contemporary Czech{" "}
+      <a
+        href="https://wiki.korpus.cz/doku.php/en:cnk:syn2020#:~:text=The%20SYN2020%20corpus%20is%20a,%2C%20including%20punctuation%20(tokens)."
+        target="_blank"
+        className="custom-link link-legend"
+      >
+        SYN2020
+      </a>
+      , including frequency data, and tries to satisfy the user's request. If,
+      even after thousands of attempts, it fails to build a pseudoword of the
+      required probability value, it will ignore this parameter.
     </p>
     <h3>What does the probability value mean?</h3>
     <ul>
       <li>
-        <h4>Phonotactic probability</h4>
+        <h4 id="PropPhon">Phonotactic probability</h4>
         <p>
           Phonotactic probability tells you how frequent phoneme sequences are
           in contemporary Czech. The calculation works with bigrams, logarithms
-          and frequency data from the Czech corpus SYN2020. It provides you with
-          a number between 0 and 1 for every word or pseudoword, the closer it
-          is to 1, the more probable it is. The number also correlates with how
-          wordlike a pseudoword is rated by native speakers.
+          and frequency data from the Czech corpus{" "}
+          <a
+            href="https://wiki.korpus.cz/doku.php/en:cnk:syn2020#:~:text=The%20SYN2020%20corpus%20is%20a,%2C%20including%20punctuation%20(tokens)."
+            target="_blank"
+            className="custom-link link-legend"
+          >
+            SYN2020
+          </a>
+          . It provides you with a number between 0 and 1 for every word or
+          pseudoword, the closer it is to 1, the more probable it is. The number
+          also correlates with how wordlike a pseudoword is rated by native
+          speakers.
         </p>
       </li>
       <li>
@@ -164,28 +182,28 @@ const LegendContent = () => (
         <p>
           <ul>
             <div className="example-words">
-            <li className="example-word">praha 0.0119</li>
-            <li className="example-word">prasátko 0.0084</li>
-            <li className="example-word">slovo 0.0051</li>
-            <li className="example-word">slon 0.0050</li>
-            <li className="example-word">žirafa 0.0038</li>
-            <li className="example-word">hrát 0.0034</li>
-            <li className="example-word">smích 0.0018</li>
-            <li className="example-word">křivka 0.0015</li>
-            <li className="example-word">ržát 0.0005</li>
-            <li className="example-word">gól 0.0001</li>
+              <li className="example-word">praha 0.0119</li>
+              <li className="example-word">prasátko 0.0084</li>
+              <li className="example-word">slovo 0.0051</li>
+              <li className="example-word">slon 0.0050</li>
+              <li className="example-word">žirafa 0.0038</li>
+              <li className="example-word">hrát 0.0034</li>
+              <li className="example-word">smích 0.0018</li>
+              <li className="example-word">křivka 0.0015</li>
+              <li className="example-word">ržát 0.0005</li>
+              <li className="example-word">gól 0.0001</li>
             </div>
             <div className="example-pseudowords">
-            <li className="example-word">polonice 0.0102</li>
-            <li className="example-word">zamtel 0.0101</li>
-            <li className="example-word">vyplomit 0.0099</li>
-            <li className="example-word">přůvka 0.0073</li>
-            <li className="example-word">brořík 0.0069</li>  
-            <li className="example-word">brátlo 0.0041</li>
-            <li className="example-word">klkpo 0.0028</li>
-            <li className="example-word">fnopka 0.0025</li>
-            <li className="example-word">fufdke 0.0009</li>
-            <li className="example-word">přtíč 0.0006</li>
+              <li className="example-word">polonice 0.0102</li>
+              <li className="example-word">zamtel 0.0101</li>
+              <li className="example-word">vyplomit 0.0099</li>
+              <li className="example-word">přůvka 0.0073</li>
+              <li className="example-word">brořík 0.0069</li>
+              <li className="example-word">brátlo 0.0041</li>
+              <li className="example-word">klkpo 0.0028</li>
+              <li className="example-word">fnopka 0.0025</li>
+              <li className="example-word">fufdke 0.0009</li>
+              <li className="example-word">přtíč 0.0006</li>
             </div>
           </ul>
         </p>
