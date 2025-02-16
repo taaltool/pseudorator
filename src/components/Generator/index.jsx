@@ -105,39 +105,55 @@ const Generator = () => {
       characterInputs
     );
     const newPseudowords = [];
-    const tolerance = 0.0001;
+    const tolerance = 0.0004; // ToDo: replace with something from UI
     const maxAttempts = 1000;
     const generatedWordsSet = new Set();
 
     for (let i = 0; i < numWords; i++) {
-      let generatedWord, generatedWordAsList, probability;
-      let attempts = 0;
-      do {
-        generatedWordAsList = generatePseudoword(
+      let bestDelta = Infinity;
+      let bestCandidate;
+
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        const generatedWordAsList = generatePseudoword(
           bigrams,
           parseInt(wordLength),
           characterInputs
         );
-        probability = ProbabilityCalculator({
+        const probability = ProbabilityCalculator({
           bigramsData: bigrams,
           word: generatedWordAsList,
         });
-        generatedWord = generatedWordAsList.join("")
-        attempts++;
-      } while (
-        (Math.abs(probability - targetProbability) > tolerance ||
-          generatedWordsSet.has(generatedWord)) &&
-        attempts < maxAttempts
-      );
+        const generatedWord = generatedWordAsList.join("");
 
-      if (!generatedWordsSet.has(generatedWord)) {
-        generatedWordsSet.add(generatedWord);
-        newPseudowords.push({ word: generatedWord, probability });
+        const delta = Math.abs(probability - targetProbability);
+
+        if (!generatedWordsSet.has(generatedWord)) {
+          if (delta < tolerance) {
+            bestCandidate = { word: generatedWord, probability };
+            break;
+          } else {
+            // looking for the best...
+            if (delta < bestDelta) {
+              // better than what we had... still can be pretty bad!
+              bestDelta = delta;
+              bestCandidate = { word: generatedWord, probability };
+            }
+          }
+        }
+      }
+
+      if (!bestCandidate) {
+        // ToDo: PANIC
+        // in this word itteration we did not found word matching criteria -> we will have less words in output!
+        console.error(`Did not found suitable candidate. i:${i}`);
+      } else {
+        generatedWordsSet.add(bestCandidate.word);
+        newPseudowords.push(bestCandidate);
         console.log(
           "Generated word:",
-          generatedWord,
+          bestCandidate.word,
           "Probability:",
-          probability
+          bestCandidate.probability
         );
       }
     }
