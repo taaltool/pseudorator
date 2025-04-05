@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import {PHONO, ORTHO} from '../../helpers/constants.js'
 
 const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
   const handleDataChoice = (choice) => {
@@ -10,7 +11,7 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
     const loadData = async (choice) => {
       try {
         const file =
-          choice === "orthotactic"
+          choice === ORTHO
             ? "https://taaltool.github.io/pseudorator/bigram-database.json"
             : "https://taaltool.github.io/pseudorator/phonetic_bigram_database.json";
         const response = await fetch(file);
@@ -36,17 +37,17 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
         Probability type:
         <button
           className={`button  ${
-            dataChoice === "orthotactic" ? "buttonActive" : ""
+            dataChoice === ORTHO ? "buttonActive" : ""
           }`}
-          onClick={() => handleDataChoice("orthotactic")}
+          onClick={() => handleDataChoice(ORTHO)}
         >
           orthotactic
         </button>
         <button
           className={`button  ${
-            dataChoice === "phonotactic" ? "buttonActive" : ""
+            dataChoice === PHONO ? "buttonActive" : ""
           }`}
-          onClick={() => handleDataChoice("phonotactic")}
+          onClick={() => handleDataChoice(PHONO)}
         >
           phonotactic
         </button>
