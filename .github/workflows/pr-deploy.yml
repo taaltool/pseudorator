@@ -22,11 +22,14 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Prepare config
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          BASE_URL: ${{ github.server_url }}/${{ github.repository }}
         run: |
           # ugly hack
-          sed -i 's/base: \"\/pseudorator\/\"/base: \"\/pseudorator\/pr-${{ github.event.number }}\/\"/g' ./vite.config.js
+          sed -i 's/base: \"\/pseudorator\/\"/base: \"\/pseudorator\/pr-$PR_NUMBER\/\"/g' ./vite.config.js
           # ugly hack 2
-          sed -i 's/<footer>/<footer>pr-${{ github.event.number }}/g' ./src/pages/HomePage/index.jsx
+          sed -i 's/<footer>/<footer><a href="$BASE_URL/pull/$PR_NUMBER">PR-$PR_NUMBER<a>/g' ./src/pages/HomePage/index.jsx
       - name: Run tests
         run: |
           npm run test
