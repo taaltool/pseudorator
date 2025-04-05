@@ -14,7 +14,7 @@ const getBigram = (bigrams, character, position, characterPosition) => {
     return null;
   }
 
-  return chooseRandomBigram(validBigrams, position).bigram;
+  return chooseRandomBigram(validBigrams, position);
 }
 
 const getRandomBigram = (bigrams, position) => {
@@ -31,7 +31,7 @@ const getRandomBigram = (bigrams, position) => {
     return null;
   }
 
-  return chooseRandomBigram(validBigrams, position).bigram
+  return chooseRandomBigram(validBigrams, position)
 }
 
 const getY_X = (bigrams, left, right, position) => {
@@ -66,7 +66,7 @@ const getY_X = (bigrams, left, right, position) => {
     return null;
   }
 
-  return chooseRandomBigram(validBigrams, position).bigram[1]
+  return chooseRandomBigram(validBigrams, position)[1]
 }
 
 export {getBigram, getRandomBigram, getY_X}
