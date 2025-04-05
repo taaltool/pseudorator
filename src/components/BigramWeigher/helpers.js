@@ -5,7 +5,7 @@ import {rand} from './rand.js'
 * @method chooseRandomBigram
 * @param {Array.<Object>} bigrams Array of bigram objects
 * @param {number} position Position in the world
-* @returns {Object} bigram object
+* @returns {Object} bigram as eiter string or array of UTF-8 characters
 */
 const chooseRandomBigram = (bigrams, position) => {
     const weights = bigrams.map((bigram) => ({
