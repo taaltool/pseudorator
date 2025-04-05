@@ -21,12 +21,18 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Build project
+      - name: Prepare config
         run: |
           # ugly hack
           sed -i 's/base: \"\/pseudorator\/\"/base: \"\/pseudorator\/pr-${{ github.event.number }}\/\"/g' ./vite.config.js
           # ugly hack 2
           sed -i 's/<footer>/<footer>pr-${{ github.event.number }}/g' ./src/pages/HomePage/index.jsx
+      - name: Run tests
+        run: |
+          npm run test
+      
+      - name: Build project
+        run: |
           npm run build
 
       - name: Upload pr build files
