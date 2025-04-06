@@ -40,7 +40,7 @@ describe('Phono bigram checks', () => {
     `
     ('Valid bigram is accepted', ({bigram}) => {
         const actual = isPhonoBigramValid(bigram)
-        console.log(`${actual}\t${bigram}`)
+
         expect(actual).toBeTruthy()
     })
 
