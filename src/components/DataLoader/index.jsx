@@ -21,6 +21,8 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
         if (data.length > 0 && data[0].bigram) {
           const validBigrams = data.filter(({bigram}) => isBigramAcceptable(bigram, choice));
           console.debug("valid bigrams:", validBigrams);
+const invalidBigrams = data.filter(({bigram}) => !isBigramAcceptable(bigram, choice));
+          console.debug("invalid bigrams:", invalidBigrams);
           if (validBigrams.length > 0 && validBigrams[0].bigram) {
             setBigrams(validBigrams);
           }
