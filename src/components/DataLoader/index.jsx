@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import {PHONO, ORTHO} from '../../helpers/constants.js'
+import { PHONO, ORTHO } from '../../helpers/constants.js'
+import { isBigramAcceptable } from '../../helpers/dataChecker.js'
 
 const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
   const handleDataChoice = (choice) => {
@@ -18,7 +19,14 @@ const DataLoader = ({ dataChoice, setDataChoice, setBigrams }) => {
         const data = await response.json();
         console.log("Loaded data:", data);
         if (data.length > 0 && data[0].bigram) {
-          setBigrams(data);
+          const validBigrams = data.filter(({bigram}) => isBigramAcceptable(bigram, choice));
+          console.debug("valid bigrams:", validBigrams);
+          if (validBigrams.length > 0 && validBigrams[0].bigram) {
+            setBigrams(validBigrams);
+          }
+          else {
+            console.error("No valid bigrams", validBigrams);
+          }
         } else {
           console.error("Data are empty or incorrectly formatted", data);
         }

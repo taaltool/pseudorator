@@ -1,9 +1,20 @@
 export const ORTHO = "orthotactic"
 export const PHONO = "phonotactic"
 
+/** @constant RegExp for bigrams in CZ orthotactic alphabet
+    @type {RegExp}
+*/
+export const regexAlphabetCZ = /^[a-záčďéěíňóřšťúůýž]{2}$/
+
+/** @constant RegExp for checking phonotactic bigrams
+    @type {RegExp}
+*/
+
+export const regexAZ = /^[a-z]$/
 /** @constant other valid characters for phonotactic bigrams
     @type {Array}
 */
+
 export const ipaCharacters = [
     { ipa: "aː", grapheme: "á" },
     { ipa: "a͡u", grapheme: "au" },
