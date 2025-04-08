@@ -10,7 +10,7 @@ const isOrtoBigramValid = (bigram) => {
 // todo: shoudl this REALLY accept ["e", "a"], any other similar?
 const isPhonoBigramValid = (bigram) => {
     let valid = false
-    if(bigram.length < 2) {
+    if(bigram.length != 2) {
         return false
     }
     for (let i = 0; i < bigram.length; i++)
