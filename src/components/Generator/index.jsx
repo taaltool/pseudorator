@@ -9,6 +9,7 @@ import {PHONO, ORTHO} from '../../helpers/constants.js'
 
 const Generator = () => {
   const [bigrams, setBigrams] = useState([]);
+  const [totalData, setTotalData] = useState([]);
   const [pseudowords, setPseudowords] = useState([]);
   const [dataChoice, setDataChoice] = useState(ORTHO);
 
@@ -121,6 +122,7 @@ const Generator = () => {
           characterInputs
         );
         const probability = ProbabilityCalculator({
+          totalData: totalData,
           bigramsData: bigrams,
           word: generatedWordAsList,
         });
@@ -167,6 +169,7 @@ const Generator = () => {
         dataChoice={dataChoice}
         setDataChoice={setDataChoice}
         setBigrams={setBigrams}
+        setTotalData={setTotalData}
       />
       <InputForm onGenerate={handleGenerate} dataChoice={dataChoice}/>
       <OutputDisplay words={pseudowords} isPhonotactic={dataChoice === PHONO}/>
