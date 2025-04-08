@@ -20,6 +20,7 @@ describe('Orto bigram checks', () => {
     ${"aaa"}
     ${"a"}
     ${"😊"}
+    ${"😊a"}
     ${"e:"}
     ${"15"}
     ${""}
@@ -37,6 +38,7 @@ describe('Phono bigram checks', () => {
     ${["v", "a"]}
     ${["a͡u", "v"]}
     ${["aː", "a͡u"]}
+    ${"aa"}
     `
     ('Valid bigram is accepted', ({bigram}) => {
         const actual = isPhonoBigramValid(bigram)
@@ -53,6 +55,7 @@ describe('Phono bigram checks', () => {
     ${["1", "a͡u"]}
     ${["č", "e"]}
     ${["č", "👌"]}
+    ${"total"}
     `
     ('Invalid bigram is rejected', ({bigram}) => {
         const actual = isPhonoBigramValid(bigram)
