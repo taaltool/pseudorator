@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ipaCharacters } from '../../helpers/constants.js'
+import { ipaCharacters } from "../../helpers/constants.js";
 
 const OutputDisplay = ({ words, isPhonotactic }) => {
   const [showIpaCharacters, setShowIpaCharacters] = useState(false);
@@ -34,12 +34,15 @@ const OutputDisplay = ({ words, isPhonotactic }) => {
             <div className="ipaField">
               <p>
                 When selecting phonotactic pobability, the following IPA
-                characters can be entered as input: 
+                characters can be entered as input:
               </p>
               <ul>
                 {ipaCharacters.map((char, index) => (
-                  <li key={index}>
-                    {char.ipa} ({char.grapheme})
+                  <li key={index} className="ipaItem">
+                    <span className={`ipaChar ${char.different === 'y' ? 'highlightDifferent' : ''}`}> {char.ipa} </span>{" "}
+                    <span className="ipaGrapheme"> ({char.grapheme}) </span>{" "}
+                    <span className="ipaDescription"> {char.description} </span>{" "}
+                    <span className="ipaExample"> {char.synExample} </span>
                   </li>
                 ))}
               </ul>{" "}
