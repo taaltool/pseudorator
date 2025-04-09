@@ -11,3 +11,12 @@ header {
   background-image: url(./img/rocket.svg);
   background-size: contain;
 }
+
+.ipaItem {
+  text-decoration: none;
+}
+.ipaChar {
+  text-align: center;
+  background-color: white;
+  border-radius: 50%;
+}

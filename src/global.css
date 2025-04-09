@@ -68,9 +68,10 @@ html {
 
 .button:hover,
 .calculateButton:hover,
-.legendButton:hover {
+.legendButton:hover,
+.detailsButton:hover {
   background-color: #43a047;
-  
+
 
 }
 
@@ -111,7 +112,7 @@ button {
 }
 
 .ipaForm {
-margin-top: 2em;
+  margin-top: 2em;
 }
 
 
@@ -123,8 +124,8 @@ margin-top: 2em;
   position: fixed;
   top: 0;
   right: 0;
-  left: 0; 
-  width: auto; 
+  left: 0;
+  width: auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-left: 1px solid #ccc;
@@ -133,7 +134,7 @@ margin-top: 2em;
   z-index: 1001;
   transition: left 0.3s ease;
   overflow-y: auto;
-  
+
 }
 
 .legendButton {
@@ -151,14 +152,72 @@ margin-top: 2em;
 }
 
 .legendActive {
-  max-width: calc(100% - 320px); 
+  max-width: calc(100% - 320px);
   margin-right: 320px;
   transition: margin 0.3s ease;
 }
 
-.link-legend, .custom-link {
+.link-legend,
+.custom-link {
   color: #43a047;
   text-decoration: none;
+}
+
+/* .ipaField ul {
+  list-style: "📋"
+} */
+
+
+.ipaExample {
+  font-style: italic;
+}
+
+.ipaField .highlightDifferent {
+  color: #2d7e30;
+}
+
+.ipaItem div {
+  display: flex;
+  margin: 10px;
+  gap: 5px;
+
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #43a047;
+  font-size: small;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  margin-right: 5px;
+  background-color: white;
+}
+
+.copyButton:hover {
+  border: 1px solid #43a047;
+}
+
+.detailsButton {
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  z-index: 1002;
+  cursor: pointer;
+  font-size: small;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+
+}
+
+.ipaDetails {
+  padding-left: 15px;
+  display: inline-block !important;
+  margin: 0 !important;
 }
 
 @media (max-width: 500px) {
@@ -169,6 +228,10 @@ margin-top: 2em;
   button {
     width: calc(100% - 10px);
     margin: 0 5px;
+  }
+
+  .copyButton {
+    width: auto;
   }
 
   .inputField {
@@ -192,7 +255,7 @@ margin-top: 2em;
     z-index: 1001;
     margin: 0;
     transform: none;
-  
+
   }
 
   .legendButton {
@@ -202,5 +265,5 @@ margin-top: 2em;
     z-index: 1002;
   }
 
- 
+
 }

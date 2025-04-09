@@ -4,12 +4,14 @@ import InputForm from "../InputForm";
 import {getBigram, getRandomBigram, getY_X} from "../BigramWeigher";
 import DataLoader from "../DataLoader";
 import ProbabilityCalculator from "../ProbabilityCalculator";
+import {PHONO, ORTHO} from '../../helpers/constants.js'
 
 
 const Generator = () => {
   const [bigrams, setBigrams] = useState([]);
+  const [totalData, setTotalData] = useState([]);
   const [pseudowords, setPseudowords] = useState([]);
-  const [dataChoice, setDataChoice] = useState("orthotactic");
+  const [dataChoice, setDataChoice] = useState(ORTHO);
 
   const generatePseudoword = (bigrams, wordLength, characterInputs) => {
     let word = Array.from({ length: wordLength }, () => "");
@@ -120,6 +122,7 @@ const Generator = () => {
           characterInputs
         );
         const probability = ProbabilityCalculator({
+          totalData: totalData,
           bigramsData: bigrams,
           word: generatedWordAsList,
         });
@@ -166,9 +169,10 @@ const Generator = () => {
         dataChoice={dataChoice}
         setDataChoice={setDataChoice}
         setBigrams={setBigrams}
+        setTotalData={setTotalData}
       />
       <InputForm onGenerate={handleGenerate} dataChoice={dataChoice}/>
-      <OutputDisplay words={pseudowords} isPhonotactic={dataChoice === 'phonotactic'}/>
+      <OutputDisplay words={pseudowords} isPhonotactic={dataChoice === PHONO}/>
     </div>
   );
 };

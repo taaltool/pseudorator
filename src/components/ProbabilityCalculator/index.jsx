@@ -1,9 +1,6 @@
-const ProbabilityCalculator = ({ bigramsData, word }) => {
+const ProbabilityCalculator = ({ totalData, bigramsData, word }) => {
   const calculateProbability = () => {
     let sumRatios = 0;
-    const totalData = bigramsData.find(
-      (b) => b.bigram === "total"
-    ).sum_log_freq_pos;
 
     for (let i = 0; i < word.length - 1; i++) {
       const bigram = word.slice(i, i + 2);
