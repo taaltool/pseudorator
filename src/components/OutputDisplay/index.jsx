@@ -3,9 +3,18 @@ import { ipaCharacters } from "../../helpers/constants.js";
 
 const OutputDisplay = ({ words, isPhonotactic }) => {
   const [showIpaCharacters, setShowIpaCharacters] = useState(false);
+  const [detailsVisible, setDetailsVisible] = useState(
+    Array(ipaCharacters.length).fill(false)
+  );
 
   const toggleIpaCharacters = () => {
     setShowIpaCharacters(!showIpaCharacters);
+  };
+
+  const toggleDetails = (index) => {
+    const newDetailsVisible = [...detailsVisible];
+    newDetailsVisible[index] = !newDetailsVisible[index];
+    setDetailsVisible(newDetailsVisible);
   };
 
   return (
@@ -39,10 +48,38 @@ const OutputDisplay = ({ words, isPhonotactic }) => {
               <ul>
                 {ipaCharacters.map((char, index) => (
                   <li key={index} className="ipaItem">
-                    <span className={`ipaChar ${char.different === 'y' ? 'highlightDifferent' : ''}`}> {char.ipa} </span>{" "}
-                    <span className="ipaGrapheme"> ({char.grapheme}) </span>{" "}
-                    <span className="ipaDescription"> {char.description} </span>{" "}
-                    <span className="ipaExample"> {char.synExample} </span>
+                    <div className="ipaBasic">
+                      {" "}
+                      <span
+                        className={`ipaChar ${
+                          char.different === "y" ? "highlightDifferent" : ""
+                        }`}
+                      >
+                        {" "}
+                        {char.ipa}{" "}
+                      </span>{" "}
+                      <span className="ipaGrapheme"> ({char.grapheme}) </span>{" "}
+                      <button
+                        onClick={() => navigator.clipboard.writeText(char.ipa)}
+                        className="copyButton"
+                      >
+                        copy
+                      </button>
+                      <button
+                        onClick={() => toggleDetails(index)}
+                        className="detailsButton"
+                      >
+                        i
+                      </button>
+                    </div>
+                    {detailsVisible[index] && (
+                      <div className="ipaDetails">
+                        <span className="ipaDescription">
+                          {char.description} as in
+                        </span>{" "}
+                        <span className="ipaExample"> {char.synExample}</span>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>{" "}
