@@ -1,34 +1,20 @@
 import React, { useState } from "react";
+import { ipaCharacters } from "../../helpers/constants.js";
 
 const OutputDisplay = ({ words, isPhonotactic }) => {
   const [showIpaCharacters, setShowIpaCharacters] = useState(false);
-  const ipaCharacters = [
-    { ipa: "aː", grapheme: "á" },
-    { ipa: "a͡u", grapheme: "au" },
-    { ipa: "ʦ", grapheme: "c" },
-    { ipa: "ʧ", grapheme: "č" },
-    { ipa: "ɟ", grapheme: "ď" },
-    { ipa: "ʣ", grapheme: "dz" },
-    { ipa: "ʤ", grapheme: "dž" },
-    { ipa: "ɛ", grapheme: "e" },
-    { ipa: "ɛː", grapheme: "é" },
-    { ipa: "ɛ͡u", grapheme: "eu" },
-    { ipa: "ɦ", grapheme: "h" },
-    { ipa: "x", grapheme: "ch" },
-    { ipa: "ɪ", grapheme: "i" },
-    { ipa: "iː", grapheme: "í" },
-    { ipa: "ɲ", grapheme: "ň" },
-    { ipa: "oː", grapheme: "ó" },
-    { ipa: "o͡u", grapheme: "ou" },
-    { ipa: "r̝", grapheme: "ř" },
-    { ipa: "ʃ", grapheme: "š" },
-    { ipa: "c", grapheme: "ť" }, 
-    { ipa: "uː", grapheme: "ú" },
-    { ipa: "ʒ", grapheme: "ž" },
-];
+  const [detailsVisible, setDetailsVisible] = useState(
+    Array(ipaCharacters.length).fill(false)
+  );
 
   const toggleIpaCharacters = () => {
     setShowIpaCharacters(!showIpaCharacters);
+  };
+
+  const toggleDetails = (index) => {
+    const newDetailsVisible = [...detailsVisible];
+    newDetailsVisible[index] = !newDetailsVisible[index];
+    setDetailsVisible(newDetailsVisible);
   };
 
   return (
@@ -57,12 +43,43 @@ const OutputDisplay = ({ words, isPhonotactic }) => {
             <div className="ipaField">
               <p>
                 When selecting phonotactic pobability, the following IPA
-                characters can be entered as input: 
+                characters can be entered as input:
               </p>
               <ul>
                 {ipaCharacters.map((char, index) => (
-                  <li key={index}>
-                    {char.ipa} ({char.grapheme})
+                  <li key={index} className="ipaItem">
+                    <div className="ipaBasic">
+                      {" "}
+                      <span
+                        className={`ipaChar ${
+                          char.different === "y" ? "highlightDifferent" : ""
+                        }`}
+                      >
+                        {" "}
+                        {char.ipa}{" "}
+                      </span>{" "}
+                      <span className="ipaGrapheme"> ({char.grapheme}) </span>{" "}
+                      <button
+                        onClick={() => navigator.clipboard.writeText(char.ipa)}
+                        className="copyButton"
+                      >
+                        copy
+                      </button>
+                      <button
+                        onClick={() => toggleDetails(index)}
+                        className="detailsButton"
+                      >
+                        i
+                      </button>
+                    </div>
+                    {detailsVisible[index] && (
+                      <div className="ipaDetails">
+                        <span className="ipaDescription">
+                          {char.description} as in
+                        </span>{" "}
+                        <span className="ipaExample"> {char.synExample}</span>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>{" "}

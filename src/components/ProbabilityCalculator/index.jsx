@@ -1,9 +1,6 @@
-const ProbabilityCalculator = ({ bigramsData, word }) => {
+const ProbabilityCalculator = ({ totalData, bigramsData, word }) => {
   const calculateProbability = () => {
     let sumRatios = 0;
-    const totalData = bigramsData.find(
-      (b) => b.bigram === "total"
-    ).sum_log_freq_pos;
 
     for (let i = 0; i < word.length - 1; i++) {
       const bigram = word.slice(i, i + 2);
@@ -19,7 +16,7 @@ const ProbabilityCalculator = ({ bigramsData, word }) => {
           const ratio = bigramLogFreq / totalLogFreq;
           sumRatios += ratio;
         }
-        console.log(
+        console.debug(
           `Bigram: ${bigram}, Position: ${positionIndex}, Bigram Log Frequency: ${bigramLogFreq}, Total Log Frequency: ${totalLogFreq}`
         );
       }
