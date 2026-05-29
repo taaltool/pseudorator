@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -39,7 +39,7 @@ jobs:
           npm run build
 
       - name: Upload pr build files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pr-${{ github.event.number }}-files
           path: ./dist
@@ -51,13 +51,13 @@ jobs:
 
     steps:
       - name: Download PR artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: pr-${{ github.event.number }}-files
           path: ./dist
 
       - name: Deploy to PR GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
